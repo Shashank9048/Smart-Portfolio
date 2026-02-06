@@ -29,7 +29,7 @@ const About: React.FC = () => {
   }];
   const handleResumeDownload = () => {
     // Open the Google Drive resume link in a new tab
-    const resumeUrl = 'https://drive.google.com/uc?export=download&id=14Ys4FXFRrF2OCrJzi3v4slTpTaZRXVpI';
+    const resumeUrl = 'https://drive.google.com/uc?export=download&id=1AM05S1qP4QhcLndxxMF6GM2ksYcaJngo';
 
     // Create a temporary link element and trigger download
     const link = document.createElement('a');
@@ -172,4 +172,5 @@ const About: React.FC = () => {
       </div>
     </section>;
 };
+
 export default About;
