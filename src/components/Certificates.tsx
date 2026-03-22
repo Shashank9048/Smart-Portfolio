@@ -148,7 +148,7 @@ const Certificates: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-slate-300 text-sm mb-6">
             📜 Verified Credentials
           </div>
-          <h2 className="text-4xl md:text-5xl font-thin text-white tracking-wide">
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-wide">
             My{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
               Certificates
