@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 mt-32 md:mt-40">
         <div ref={headlineRef} className="mb-8">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-thin text-white mb-4 tracking-wider">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-4 tracking-wider">
             Hi, I'm{' '}
             <span className="bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 text-[#ba6fe9]">
               Shashank
