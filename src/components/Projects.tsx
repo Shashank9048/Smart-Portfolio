@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,69 +13,111 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: 'University Management System',
-      subtitle: 'UMS Student Dashboard',
-      description: 'Professional student dashboard for university information management. Features interactive navigation, dark/light mode toggle, and dynamic timetable switching.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Material Icons'],
-      gradient: 'from-cyan-400 to-blue-600',
-      icon: '🎯',
-      githubUrl: 'https://github.com/Shashank9048/UMS-Project',
-      features: ['Interactive navigation menu', 'Dark/Light mode toggle', 'Dynamic timetable system', 'Professional UI animations']
+      title: 'SmartIntern Tracker',
+      subtitle: 'AI-Powered Internship Management Platform',
+      period: 'Feb 2026',
+      bannerImage: '/project-banners/SmartInternTracker.png',
+      description: 'Full-stack AI platform to streamline internship tracking, resume analysis, and performance prediction. Built with FastAPI + Gemini 1.5 Flash + ML models.',
+      tech: ['FastAPI', 'Python', 'Gemini API', 'Scikit-learn', 'JavaScript', 'REST APIs'],
+      gradient: 'from-violet-500 to-purple-700',
+      icon: '🤖',
+      githubUrl: 'https://github.com/Shashank9048',
+      features: [
+        'AI chatbot for real-time query resolution and resume insights',
+        'ML-based internship performance prediction with Scikit-learn',
+        'Scalable FastAPI backend with auth and REST APIs',
+        'Personalized responsive dashboards'
+      ]
     },
     {
       id: 2,
-      title: 'SkillSeed',
-      subtitle: 'AI-Powered Coding Education Platform',
-      description: 'Next-gen educational platform for learning coding with AI assistance. Interactive personalized experience with real-time Q&A, note-making, and GitHub/LeetCode progress tracking.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'AI APIs', 'Firebase'],
-      gradient: 'from-purple-400 to-pink-600',
-      icon: '🎓',
-      githubUrl: 'https://github.com/Shashank9048/SkillSeed',
-      features: ['AI-powered Q&A integration', 'Downloadable PDF notes', 'GitHub/LeetCode tracking', 'Interactive video tutorials']
+      title: 'TechConnect3003',
+      subtitle: 'Community Networking Platform (MERN Stack)',
+      period: 'Jul–Aug 2025',
+      bannerImage: '/project-banners/techconnect.png',
+      description: 'Community-driven MERN stack networking platform for technical discussions, peer collaboration, and structured engagement.',
+      tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'REST APIs'],
+      gradient: 'from-cyan-400 to-blue-600',
+      icon: '🌐',
+      githubUrl: 'https://github.com/Shashank9048',
+      features: [
+        'Dynamic reusable React components for seamless UX',
+        'Session-based auth with Node.js + Express',
+        'Optimized MongoDB schema for efficient data persistence',
+        'Fully responsive front-end'
+      ]
     },
     {
       id: 3,
-      title: 'FitLife Planner Pro',
-      subtitle: 'AI-Integrated Fitness Planner',
-      description: 'Full-featured fitness planning web application with AI-powered personal trainer using Google\'s Gemini API. Features real-time chatbot for fitness advice, dynamic workout planners, and progress tracking dashboard.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Gemini API', 'Netlify'],
-      gradient: 'from-green-400 to-emerald-600',
-      icon: '💪',
-      githubUrl: 'https://github.com/Shashank9048/FitLife-Planner-Pro-FitBot-Assistant',
-      features: ['AI Chatbot for fitness queries', 'Dynamic workout & meal planners', 'Real-time progress tracking', 'Mobile & desktop responsive']
+      title: 'Smart Portfolio',
+      subtitle: 'AI-Enhanced Personal Portfolio',
+      period: 'Jul 2025',
+      bannerImage: '/project-banners/Smart-Portfolio.png',
+      description: 'Professional personal portfolio with Gemini AI-powered chatbot, fully responsive, deployed on Netlify.',
+      tech: ['HTML', 'CSS', 'TypeScript', 'Tailwind CSS', 'Gemini AI'],
+      gradient: 'from-pink-400 to-rose-600',
+      icon: '💼',
+      githubUrl: 'https://github.com/Shashank9048',
+      features: [
+        'Gemini AI chatbot for visitor engagement',
+        'Fully responsive across all devices',
+        'Deployed on Netlify with GitHub source',
+        'Tailwind CSS + GSAP animations'
+      ]
     },
     {
       id: 4,
-      title: 'KisanSathi',
-      subtitle: 'Farmer Query Support Platform',
-      description: 'Web-based portal connecting farmers with agricultural experts. Designed for accessibility in rural areas with mobile-first approach for users with minimal tech literacy.',
-      tech: ['HTML', 'CSS', 'JavaScript'],
-      gradient: 'from-orange-400 to-yellow-600',
-      icon: '🌾',
-      githubUrl: 'https://github.com/Shashank9048/KisanSathi',
-      features: ['Form-based query system', 'Mobile-first responsive design', 'Accessibility focused', 'Social impact through technology']
+      title: 'Directory Management System',
+      subtitle: 'Smart File Organizer & Duplicate Finder',
+      period: 'Apr 2025',
+      bannerImage: '/project-banners/Directory Management System.png',
+      description: 'Python desktop app for intelligent file organization and duplicate detection using hashing and MIME type detection.',
+      tech: ['Python', 'Tkinter', 'OS Module', 'Hashlib', 'Magic', 'Multithreading'],
+      gradient: 'from-yellow-400 to-orange-500',
+      icon: '🗂️',
+      githubUrl: 'https://github.com/Shashank9048',
+      features: [
+        'Hashlib-based duplicate file detection',
+        'Magic library for MIME type identification',
+        'Multithreaded processing for performance',
+        'Tkinter GUI for easy use'
+      ]
     },
     {
       id: 5,
-      title: 'Directory Management System',
-      subtitle: 'Smart File Organizer & Duplicate Finder',
-      description: 'Python-based desktop GUI application for efficient file system management. Automates file organization and locates duplicates using MD5 hashing with intuitive Tkinter interface.',
-      tech: ['Python', 'Tkinter', 'Hashlib', 'Multithreading'],
-      gradient: 'from-blue-400 to-indigo-600',
-      icon: '📁',
-      githubUrl: 'https://github.com/Shashank9048/Smart-Directory-Management-System',
-      features: ['Automatic file categorization', 'Duplicate detection with MD5', 'Multithreaded operations', 'Undo functionality for safety']
+      title: 'KisanSathi',
+      subtitle: 'Farmer Support Platform',
+      period: 'Mar 2025',
+      bannerImage: '/project-banners/KisanSathi.png',
+      description: 'Web portal connecting farmers with agricultural experts. Mobile-first approach for rural accessibility.',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      gradient: 'from-green-400 to-emerald-600',
+      icon: '🌾',
+      githubUrl: 'https://github.com/Shashank9048/KisanSathi',
+      features: [
+        'Form-based agricultural query system',
+        'Mobile-first responsive design',
+        'Accessibility-focused for low-tech-literacy users',
+        'Social impact focused'
+      ]
     },
     {
       id: 6,
-      title: 'TheMudrak',
-      subtitle: 'Sustainable Printing & Packaging Store',
-      description: 'Professional eco-conscious commercial website for a real-world sustainable printing brand. Live e-commerce-style site promoting green business practices with eco-friendly materials.',
-      tech: ['HTML', 'CSS', 'JavaScript', 'WordPress'],
-      gradient: 'from-green-500 to-teal-600',
-      icon: '🌱',
-      link: 'https://themudrak.com',
-      features: ['Live commercial website', 'Eco-friendly product showcase', 'SEO optimized', 'Fast-loading responsive design']
+      title: 'FitLife Planner Pro',
+      subtitle: 'AI-Integrated Fitness Planner + FitBot',
+      period: 'Feb 2025',
+      bannerImage: '/project-banners/Fit life planner pro .png',
+      description: 'Full-featured fitness planning app with Gemini-powered AI personal trainer chatbot, workout planner, and progress dashboard.',
+      tech: ['HTML', 'CSS', 'JavaScript', 'Gemini API', 'Netlify'],
+      gradient: 'from-blue-400 to-indigo-600',
+      icon: '💪',
+      githubUrl: 'https://github.com/Shashank9048/FitLife-Planner-Pro-FitBot-Assistant',
+      features: [
+        'FitBot AI chatbot powered by Gemini API',
+        'Dynamic workout planner',
+        'Real-time progress tracking',
+        'Mobile responsive, deployed on Netlify'
+      ]
     }
   ];
 
@@ -138,14 +180,14 @@ const Projects: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-slate-900/50 to-slate-800/50">
+    <section ref={sectionRef} id="projects" className="py-20 px-6 bg-gradient-to-b from-slate-900/50 to-slate-800/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-thin text-white mb-6 tracking-wide">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Projects</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            A showcase of my latest work, featuring AI-integrated applications, real-world commercial projects, and innovative solutions.
+            A showcase of my latest work, featuring AI-integrated applications, full-stack platforms, and innovative solutions.
           </p>
         </div>
 
@@ -155,27 +197,46 @@ const Projects: React.FC = () => {
               key={project.id}
               className="project-card glassmorphic rounded-xl overflow-hidden cursor-pointer group"
             >
-              <div className={`h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <span className="text-2xl">{project.icon}</span>
+              {/* Banner — always render gradient as base, image sits on top */}
+              <div className="relative h-44 overflow-hidden rounded-t-2xl flex-shrink-0">
+                {/* Gradient base layer — always visible as fallback */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
+
+                {/* Real banner image */}
+                {project.bannerImage && (
+                  <img
+                    src={project.bannerImage}
+                    alt={`${project.title} banner`}
+                    loading="lazy"
+                    className="project-banner-img absolute inset-0"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
+                )}
+
+                {/* Dark + brand overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent pointer-events-none" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20 pointer-events-none`} />
+
+                {/* Icon bubble — bottom left */}
+                <div className="absolute bottom-3 left-4 z-10">
+                  <div className="w-11 h-11 bg-black/30 rounded-xl flex items-center justify-center backdrop-blur-md text-xl border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                    {project.icon}
                   </div>
                 </div>
-                {project.link && (
-                  <div className="absolute top-4 right-4">
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-all duration-300"
-                    >
-                      <ExternalLink className="w-4 h-4 text-white" />
-                    </a>
+
+                {/* Period badge — top right */}
+                {project.period && (
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="text-xs bg-black/50 text-white/90 px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10">
+                      {project.period}
+                    </span>
                   </div>
                 )}
               </div>
-              
+
+
               <div className="p-6">
                 <div className="mb-3">
                   <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
@@ -185,11 +246,11 @@ const Projects: React.FC = () => {
                     {project.subtitle}
                   </p>
                 </div>
-                
+
                 <p className="text-slate-300 text-sm mb-4 leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
-                
+
                 <div className="mb-4">
                   <p className="text-xs text-slate-400 mb-2 font-medium">Key Features:</p>
                   <ul className="text-xs text-slate-300 space-y-1">
@@ -201,7 +262,7 @@ const Projects: React.FC = () => {
                     ))}
                   </ul>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech) => (
                     <span
@@ -212,13 +273,13 @@ const Projects: React.FC = () => {
                     </span>
                   ))}
                 </div>
-                
+
                 <div className="flex justify-end">
-                  <a 
+                  <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 bg-slate-700/50 border border-slate-600/30 text-slate-300 rounded-lg hover:bg-slate-600/50 transition-all duration-300 hover:text-white"
+                    className="flex items-center gap-2 px-3 py-2 bg-slate-700/50 border border-slate-600/30 text-slate-300 rounded-lg hover:bg-slate-600/50 transition-all duration-300 hover:text-white"
                   >
                     <Github className="w-4 h-4" />
                   </a>

@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import emailjs from '@emailjs/browser';
 import { useToast } from '@/hooks/use-toast';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,17 +17,7 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // EmailJS configuration
-  const emailJSConfig = {
-    serviceId: 'service_lyb0tmn',
-    templateId: 'template_4yjtt2w',
-    publicKey: 'YRoS6gdpaOflh2eq6'
-  };
-
   useEffect(() => {
-    // Initialize EmailJS
-    emailjs.init(emailJSConfig.publicKey);
-
     if (!sectionRef.current) return;
 
     const tl = gsap.timeline({
@@ -99,9 +88,7 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (isSubmitting) return;
-    
     setIsSubmitting(true);
 
     // Submit button animation
@@ -115,56 +102,42 @@ const Contact: React.FC = () => {
     });
 
     try {
-      // Prepare template parameters for EmailJS
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_name: 'Shashank Singh', // Your name
-      };
-
-      console.log('Sending email with params:', templateParams);
-
-      // Send email using EmailJS
-      const response = await emailjs.send(
-        emailJSConfig.serviceId,
-        emailJSConfig.templateId,
-        templateParams
-      );
-
-      console.log('Email sent successfully:', response);
-
-      // Show success toast
-      toast({
-        title: "Message sent successfully! 🎉",
-        description: "Thank you for reaching out. I'll get back to you soon!",
+      const response = await fetch('https://formspree.io/f/xaqpzkod', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        })
       });
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-
-      // Success animation
-      gsap.to(submitBtn, {
-        backgroundColor: '#10b981',
-        duration: 0.3,
-        yoyo: true,
-        repeat: 1
-      });
-
+      if (response.ok) {
+        toast({
+          title: "Message Sent! 🎉",
+          description: "Thanks for reaching out! Shashank will reply soon.",
+        });
+        setFormData({ name: '', email: '', message: '' });
+        // Success animation
+        gsap.to(submitBtn, {
+          backgroundColor: '#10b981',
+          duration: 0.3,
+          yoyo: true,
+          repeat: 1
+        });
+      } else {
+        const data = await response.json();
+        throw new Error(data?.errors?.[0]?.message || 'Submission failed');
+      }
     } catch (error) {
-      console.error('Failed to send email:', error);
-      
-      // Show error toast
       toast({
-        title: "Failed to send message",
-        description: "Something went wrong. Please try again or contact me directly.",
+        title: "Failed to Send",
+        description: "Please try again or email shashanksingh9048@gmail.com directly.",
         variant: "destructive",
       });
-
       // Error animation
       gsap.to(submitBtn, {
         backgroundColor: '#ef4444',
@@ -192,11 +165,6 @@ const Contact: React.FC = () => {
     icon: '💻',
     url: 'https://leetcode.com/u/Shashank96300/',
     color: 'hover:text-orange-400'
-  }, {
-    name: 'Email',
-    icon: '✉️',
-    url: 'mailto:shashanksingh9048@gmail.com',
-    color: 'hover:text-green-400'
   }];
 
   return (
@@ -219,14 +187,14 @@ const Contact: React.FC = () => {
                 <label className="block text-slate-300 text-sm font-medium mb-2">
                   Name
                 </label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  value={formData.name} 
-                  onChange={handleInputChange} 
-                  className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/30 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-all duration-300" 
-                  placeholder="Your name" 
-                  required 
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/30 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-all duration-300"
+                  placeholder="Your name"
+                  required
                   disabled={isSubmitting}
                 />
               </div>
@@ -235,14 +203,14 @@ const Contact: React.FC = () => {
                 <label className="block text-slate-300 text-sm font-medium mb-2">
                   Email
                 </label>
-                <input 
-                  type="email" 
-                  name="email" 
-                  value={formData.email} 
-                  onChange={handleInputChange} 
-                  className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/30 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-all duration-300" 
-                  placeholder="your@email.com" 
-                  required 
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/30 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-all duration-300"
+                  placeholder="your@email.com"
+                  required
                   disabled={isSubmitting}
                 />
               </div>
@@ -251,20 +219,20 @@ const Contact: React.FC = () => {
                 <label className="block text-slate-300 text-sm font-medium mb-2">
                   Message
                 </label>
-                <textarea 
-                  name="message" 
-                  value={formData.message} 
-                  onChange={handleInputChange} 
-                  rows={5} 
-                  className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/30 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-all duration-300 resize-none" 
-                  placeholder="Tell me about your project..." 
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={5}
+                  className="w-full px-4 py-3 bg-slate-800/60 border border-slate-600/30 rounded-lg text-white placeholder-slate-400 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 focus:outline-none transition-all duration-300 resize-none"
+                  placeholder="Tell me about your project..."
                   required
                   disabled={isSubmitting}
                 ></textarea>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isSubmitting}
                 className="contact-submit w-full py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-medium rounded-lg hover:from-cyan-400 hover:to-purple-500 transition-all duration-300 transform hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 disabled:cursor-not-allowed"
               >
@@ -291,17 +259,27 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-slate-300 text-sm">Email</p>
-                    <p className="text-white">shashanksingh9048@gmail.com</p>
+                    <p className="text-white text-sm">shashanksingh9048@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-cyan-400/20 to-purple-600/20 rounded-lg flex items-center justify-center">
                     <span className="text-xl">📱</span>
                   </div>
                   <div>
                     <p className="text-slate-300 text-sm">Phone</p>
-                    <p className="text-white">+91 9630023003</p>
+                    <p className="text-white">+91-9630023003</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-400/20 to-purple-600/20 rounded-lg flex items-center justify-center">
+                    <span className="text-xl">🎓</span>
+                  </div>
+                  <div>
+                    <p className="text-slate-300 text-sm">University</p>
+                    <p className="text-white text-sm">Lovely Professional University</p>
                   </div>
                 </div>
               </div>
@@ -311,9 +289,9 @@ const Contact: React.FC = () => {
               <h3 className="text-2xl font-light text-white mb-6">Follow Me</h3>
               <div className="grid grid-cols-2 gap-4">
                 {socialLinks.map((social) => (
-                  <a 
-                    key={social.name} 
-                    href={social.url} 
+                  <a
+                    key={social.name}
+                    href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`social-icon flex items-center space-x-3 p-3 rounded-lg bg-slate-800/40 border border-slate-600/30 text-slate-300 ${social.color} transition-all duration-300 hover:bg-slate-700/40`}

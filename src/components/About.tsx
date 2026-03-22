@@ -1,31 +1,39 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, Download } from 'lucide-react';
+import { ChevronDown, Download, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import CertificateModal from './CertificateModal';
 gsap.registerPlugin(ScrollTrigger);
+const RESUME_DRIVE_ID = '1AM05S1qP4QhcLndxxMF6GM2ksYcaJngo';
+
 const About: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const skillCategories = [{
     emoji: '🚀',
     title: 'Cloud Platforms',
-    skills: ['AWS', 'GCP']
+    skills: ['AWS', 'Google Cloud', 'Apache']
   }, {
     emoji: '🧠',
     title: 'Programming Languages',
-    skills: ['Java', 'C++', 'JavaScript', 'Python', 'Bash', 'Shell']
+    skills: ['Java', 'C++', 'JavaScript', 'Bash', 'Shell Scripting']
   }, {
     emoji: '🌐',
-    title: 'Web Development',
-    skills: ['HTML', 'CSS', 'WordPress']
+    title: 'Web & Frameworks',
+    skills: ['HTML', 'CSS', 'React.js', 'Node.js', 'Express.js', 'FastAPI', 'WordPress', 'Tailwind CSS']
+  }, {
+    emoji: '💾',
+    title: 'Databases & Tools',
+    skills: ['MySQL', 'MongoDB', 'Scikit-learn', 'Tkinter']
   }, {
     emoji: '💻',
-    title: 'Systems & Databases',
-    skills: ['Linux', 'Windows', 'MySQL']
+    title: 'Operating Systems',
+    skills: ['Linux (RedHat)', 'Linux (Ubuntu)', 'Windows']
   }];
   const handleResumeDownload = () => {
     // Open the Google Drive resume link in a new tab
@@ -111,41 +119,56 @@ const About: React.FC = () => {
       };
     }
   }, []);
-  return <section ref={sectionRef} className="py-20 px-6 bg-slate-900/50">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Profile Image */}
-          <div ref={imageRef} className="flex justify-center lg:justify-start">
-            <div className="relative">
-              <div className="w-80 h-80 rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-600/20 p-1">
-                <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
-                  <img src="/lovable-uploads/63afa4e8-f067-4142-a164-2515c02ac071.png" alt="Shashank - Web Developer" className="w-full h-full object-cover object-top rounded-full scale-110" />
+  return (
+    <>
+      <section ref={sectionRef} className="py-20 px-6 bg-slate-900/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Profile Image */}
+            <div ref={imageRef} className="flex justify-center lg:justify-start">
+              <div className="relative">
+                <div className="w-80 h-80 rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-600/20 p-1">
+                  <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
+                    <img src="/uploads/63afa4e8-f067-4142-a164-2515c02ac071.png" alt="Shashank - Web Developer" className="w-full h-full object-cover object-top rounded-full scale-110" />
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 to-purple-600/10 rounded-full blur-xl"></div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div ref={contentRef} className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-thin text-white mb-6 tracking-wide">
+                  About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Me</span>
+                </h2>
+                <p className="text-lg text-slate-300 leading-relaxed mb-6">I'm a Computer Science student at Lovely Professional University with a CGPA of 7.45, passionate about building AI-powered web platforms and cloud solutions. I've worked as a freelance developer for real clients, built full-stack applications with MERN and FastAPI, and completed a cloud computing internship. I thrive in Linux environments and love solving real-world problems with clean, efficient code.</p>
+
+                {/* Resume Buttons – Preview + Download */}
+                <div className="flex gap-3 flex-wrap">
+                  <Button
+                    onClick={() => setResumeModalOpen(true)}
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 backdrop-blur-md text-slate-300 hover:text-white hover:bg-white/10 font-medium px-5 py-3 rounded-xl transition-all duration-200"
+                    style={{ transition: 'none' }}
+                  >
+                    <Eye className="w-4 h-4 text-cyan-400" />
+                    Preview Resume
+                  </Button>
+                  <Button
+                    onClick={handleResumeDownload}
+                    className="flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 text-white font-medium px-5 py-3 rounded-xl transition-all duration-200 shadow-lg"
+                    style={{ transition: 'none' }}
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </Button>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 to-purple-600/10 rounded-full blur-xl"></div>
-            </div>
-          </div>
 
-          {/* Content */}
-          <div ref={contentRef} className="space-y-8">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-thin text-white mb-6 tracking-wide">
-                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Me</span>
-              </h2>
-              <p className="text-lg text-slate-300 leading-relaxed mb-6">I'm a passionate Computer Science student with hands-on experience in building web platforms, automating systems, and working with cloud technologies like AWS and GCP. I enjoy solving real-world problems using Java, C++, Python, and JavaScript, and thrive in Linux environments.</p>
-              <p className="text-lg text-slate-300 leading-relaxed mb-6">Outside of coding, I explore emerging technologies, build personal projects, and constantly push myself to learn, adapt, and grow as a developer.</p>
-              
-              {/* Resume Download Button */}
-              <Button onClick={handleResumeDownload} className="bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-                <Download className="w-5 h-5 mr-2" />
-                Download Resume
-              </Button>
-            </div>
-
-            <div ref={skillsRef}>
-              <h3 className="text-2xl font-light text-white mb-6">Skills</h3>
-              <div className="space-y-4">
-                {skillCategories.map((category, index) => <Collapsible key={category.title} className="skill-category">
+              <div ref={skillsRef}>
+                <h3 className="text-2xl font-light text-white mb-6">Skills</h3>
+                <div className="space-y-4">
+                  {skillCategories.map((category, index) => <Collapsible key={category.title} className="skill-category">
                     <CollapsibleTrigger className="w-full glassmorphic p-4 rounded-lg hover:bg-white/10 transition-all duration-300 group">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -159,18 +182,33 @@ const About: React.FC = () => {
                       <div className="pt-3 pb-1 px-4">
                         <div className="flex flex-wrap gap-2">
                           {category.skills.map(skill => <span key={skill} className="px-3 py-1 bg-gradient-to-r from-cyan-400/20 to-purple-600/20 text-slate-300 text-sm rounded-full border border-white/10 hover:border-white/20 transition-colors duration-200">
-                              {skill}
-                            </span>)}
+                            {skill}
+                          </span>)}
                         </div>
                       </div>
                     </CollapsibleContent>
                   </Collapsible>)}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>;
+      </section>
+
+      {/* Resume Preview Modal */}
+      {resumeModalOpen && (
+        <CertificateModal
+          isOpen={resumeModalOpen}
+          onClose={() => setResumeModalOpen(false)}
+          title="Shashank's Resume"
+          issuer="Software Engineer & Cloud Enthusiast"
+          previewUrl={`https://drive.google.com/file/d/${RESUME_DRIVE_ID}/preview`}
+          downloadUrl={`https://drive.google.com/uc?export=download&id=${RESUME_DRIVE_ID}`}
+          status="📄 Resume"
+        />
+      )}
+    </>
+  );
 };
 
 export default About;

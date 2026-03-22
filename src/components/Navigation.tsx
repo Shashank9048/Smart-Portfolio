@@ -2,22 +2,32 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
+const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
 const Navigation: React.FC = () => {
   const navRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', id: 'home' },
+    { name: 'About', id: 'about' },
+    { name: 'Experience', id: 'experience' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Achievements', id: 'achievements' },
+    { name: 'Certificates', id: 'certificates' },
+    { name: 'Contact', id: 'contact' }
   ];
 
   useEffect(() => {
     if (!navRef.current) return;
 
     // Initial animation
-    gsap.fromTo(navRef.current, 
+    gsap.fromTo(navRef.current,
       {
         opacity: 0,
         y: -50,
@@ -33,38 +43,36 @@ const Navigation: React.FC = () => {
       }
     );
 
-    // Scroll animation
+    // Scroll animation — hide on scroll down, show on scroll up
     let lastScrollY = window.scrollY;
-    
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down
         gsap.to(navRef.current, {
           y: -100,
           duration: 0.3,
           ease: 'power2.out'
         });
       } else {
-        // Scrolling up
         gsap.to(navRef.current, {
           y: 0,
           duration: 0.3,
           ease: 'power2.out'
         });
       }
-      
+
       lastScrollY = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    
+
     if (!isMenuOpen) {
       gsap.fromTo('.mobile-menu',
         { opacity: 0, y: -20 },
@@ -84,8 +92,8 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-full overflow-hidden">
-              <img 
-                src="/lovable-uploads/63afa4e8-f067-4142-a164-2515c02ac071.png" 
+              <img
+                src="/uploads/63afa4e8-f067-4142-a164-2515c02ac071.png"
                 alt="Shashank"
                 className="w-full h-full object-cover object-top scale-110"
               />
@@ -102,8 +110,12 @@ const Navigation: React.FC = () => {
             {navItems.map((item) => (
               <a
                 key={item.name}
-                href={item.href}
-                className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group"
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                }}
+                className="text-slate-300 hover:text-white transition-colors duration-300 font-medium relative group cursor-pointer"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 group-hover:w-full transition-all duration-300"></span>
@@ -129,9 +141,13 @@ const Navigation: React.FC = () => {
               {navItems.map((item) => (
                 <a
                   key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-slate-300 hover:text-white transition-colors duration-300 font-medium py-2 border-b border-slate-700/30 last:border-b-0"
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-slate-300 hover:text-white transition-colors duration-300 font-medium py-2 border-b border-slate-700/30 last:border-b-0 cursor-pointer"
                 >
                   {item.name}
                 </a>

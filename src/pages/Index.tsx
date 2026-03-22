@@ -4,7 +4,10 @@ import LoadingScreen from '../components/LoadingScreen';
 import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import About from '../components/About';
+import Experience from '../components/Experience';
 import Projects from '../components/Projects';
+import Achievements from '../components/Achievements';
+import Certificates from '../components/Certificates';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingChatbot from '../components/FloatingChatbot';
@@ -44,8 +47,17 @@ const Index = () => {
             <section id="about">
               <About />
             </section>
+            <section id="experience">
+              <Experience />
+            </section>
             <section id="projects">
               <Projects />
+            </section>
+            <section id="achievements">
+              <Achievements />
+            </section>
+            <section id="certificates">
+              <Certificates />
             </section>
             <section id="contact">
               <Contact />

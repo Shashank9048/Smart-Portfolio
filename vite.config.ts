@@ -19,4 +19,24 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor libraries into separate chunks for better caching
+          vendor: ['react', 'react-dom'],
+          gsap: ['gsap'],
+          ui: ['lucide-react'],
+        }
+      }
+    },
+    // Warn if any chunk is over 1MB
+    chunkSizeWarningLimit: 1000,
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'gsap'],
+  },
 }));
