@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             {/* Brand */}
             <div className="space-y-4">
-              <h3 className="text-3xl font-thin text-white tracking-wider">
+              <h3 className="text-3xl font-medium text-white tracking-wider">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Shashank</span>
               </h3>
               <p className="text-slate-300 text-sm leading-relaxed">Building impactful software through code and cloud. Let's turn ideas into powerful digital solutions.</p>
