@@ -98,7 +98,7 @@ const Navigation: React.FC = () => {
                 className="w-full h-full object-cover object-top scale-110"
               />
             </div>
-            <span className="text-2xl font-thin text-white tracking-wider">
+            <span className="text-2xl font-medium text-white tracking-wider">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
                 Shashank
               </span>
