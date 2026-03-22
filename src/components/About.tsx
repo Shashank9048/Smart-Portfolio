@@ -139,7 +139,7 @@ const About: React.FC = () => {
             {/* Content */}
             <div ref={contentRef} className="space-y-8">
               <div>
-                <h2 className="text-4xl md:text-5xl font-thin text-white mb-6 tracking-wide">
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
                   About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Me</span>
                 </h2>
                 <p className="text-lg text-slate-300 leading-relaxed mb-6">I'm a Computer Science student at Lovely Professional University with a CGPA of 7.45, passionate about building AI-powered web platforms and cloud solutions. I've worked as a freelance developer for real clients, built full-stack applications with MERN and FastAPI, and completed a cloud computing internship. I thrive in Linux environments and love solving real-world problems with clean, efficient code.</p>
