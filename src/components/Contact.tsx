@@ -171,7 +171,7 @@ const Contact: React.FC = () => {
     <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-slate-800/50 to-slate-900">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-thin text-white mb-6 tracking-wide">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
             Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Connect</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
