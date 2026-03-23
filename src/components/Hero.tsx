@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
               Shashank
             </span>
           </h1>
-          <p className="text-xl md:text-2xl font-light mb-8 text-[#6c92a7]">
+          <p className="text-xl md:text-2xl font-medium mb-8 text-[#6c92a7]">
             Software Engineer & Cloud Enthusiast
           </p>
         </div>
