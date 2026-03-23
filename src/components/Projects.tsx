@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
       tech: ['FastAPI', 'Python', 'Gemini API', 'Scikit-learn', 'JavaScript', 'REST APIs'],
       gradient: 'from-violet-500 to-purple-700',
       icon: '🤖',
-      githubUrl: 'https://github.com/Shashank9048',
+      githubUrl: 'https://github.com/Shashank9048/SmartIntern-Tracker',
       features: [
         'AI chatbot for real-time query resolution and resume insights',
         'ML-based internship performance prediction with Scikit-learn',
@@ -39,7 +39,7 @@ const Projects: React.FC = () => {
       tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'REST APIs'],
       gradient: 'from-cyan-400 to-blue-600',
       icon: '🌐',
-      githubUrl: 'https://github.com/Shashank9048',
+      githubUrl: 'https://github.com/Shashank9048/TechConnect3003',
       features: [
         'Dynamic reusable React components for seamless UX',
         'Session-based auth with Node.js + Express',
@@ -57,7 +57,7 @@ const Projects: React.FC = () => {
       tech: ['HTML', 'CSS', 'TypeScript', 'Tailwind CSS', 'Gemini AI'],
       gradient: 'from-pink-400 to-rose-600',
       icon: '💼',
-      githubUrl: 'https://github.com/Shashank9048',
+      githubUrl: 'https://github.com/Shashank9048/Smart-Portfolio',
       features: [
         'Gemini AI chatbot for visitor engagement',
         'Fully responsive across all devices',
@@ -75,7 +75,7 @@ const Projects: React.FC = () => {
       tech: ['Python', 'Tkinter', 'OS Module', 'Hashlib', 'Magic', 'Multithreading'],
       gradient: 'from-yellow-400 to-orange-500',
       icon: '🗂️',
-      githubUrl: 'https://github.com/Shashank9048',
+      githubUrl: 'https://github.com/Shashank9048/Smart-Directory-Management-System',
       features: [
         'Hashlib-based duplicate file detection',
         'Magic library for MIME type identification',
