@@ -183,7 +183,7 @@ const Projects: React.FC = () => {
     <section ref={sectionRef} id="projects" className="py-20 px-6 bg-gradient-to-b from-slate-900/50 to-slate-800/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">
+          <h2 className="text-4xl md:text-5xl font-thin text-white mb-6 tracking-wide">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">Projects</span>
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
@@ -208,7 +208,7 @@ const Projects: React.FC = () => {
                     src={project.bannerImage}
                     alt={`${project.title} banner`}
                     loading="lazy"
-                    className="project-banner-img absolute inset-0"
+                    className="project-banner-img absolute inset-0 object-cover w-full h-full"
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none';
                     }}
